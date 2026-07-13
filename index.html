@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Timber Nijland — Haute Cuisine aan Huis</title>
 <meta name="description" content="Timber Nijland brengt privé fine dining aan huis in Dedemsvaart en omstreken. Een op maat gemaakt verrassingsmenu van 5+ gangen, klassiek Frans, voor gezelschappen tot 8 gasten.">
 <meta name="theme-color" content="#1B1714">
@@ -44,7 +44,10 @@
   <div class="container">
     <nav>
       <a href="#top" class="logo">Timber Nijland <span>Privé Dining</span></a>
-      <div class="nav-links">
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Menu openen">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
         <a href="#concept">Concept</a>
         <a href="#keuken">Keuken</a>
         <a href="#tafel">Tafel voor Acht</a>
