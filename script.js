@@ -62,8 +62,10 @@ if (reserveerForm) {
 
 // header scroll state
 const header = document.getElementById('siteHeader');
+const backToTop = document.getElementById('backToTop');
 window.addEventListener('scroll', () => {
   header.classList.toggle('scrolled', window.scrollY > 40);
+  if (backToTop) backToTop.classList.toggle('visible', window.scrollY > 700);
 });
 
 // scroll reveal

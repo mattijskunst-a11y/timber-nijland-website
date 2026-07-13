@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mattijskunst-a11y.github.io/timber-nijland-website/sitemap.xml
