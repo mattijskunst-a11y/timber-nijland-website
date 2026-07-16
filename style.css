@@ -69,13 +69,8 @@ header.scrolled{
   border-bottom:1px solid var(--line);
 }
 nav{display:flex; justify-content:space-between; align-items:center; gap:20px;}
-.logo{
-  font-family:'Fraunces', serif;
-  font-size:1.15rem;
-  letter-spacing:0.02em;
-  white-space:nowrap;
-}
-.logo span{color:var(--brass-soft); font-style:italic;}
+.logo{display:flex; align-items:center;}
+.logo img{height:40px; width:auto; display:block;}
 .nav-links{display:flex; gap:26px; font-size:0.82rem; letter-spacing:0.06em; text-transform:uppercase;}
 .nav-links a{opacity:0.75; transition:opacity .25s ease, color .25s ease; position:relative;}
 .nav-links a:hover{opacity:1; color:var(--brass-soft);}
@@ -495,8 +490,7 @@ footer{
 /* ---------- SMALL SCREENS ---------- */
 @media (max-width:480px){
   .container{ padding-left:calc(20px + env(safe-area-inset-left)); padding-right:calc(20px + env(safe-area-inset-right)); }
-  .logo{ font-size:1rem; }
-  .logo span{ display:none; }
+  .logo img{ height:32px; }
   .nav-cta{ padding:8px 14px; font-size:0.72rem; }
   section{ padding:80px 0; }
   .section-head{ margin-bottom:44px; }
