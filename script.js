@@ -27,7 +27,7 @@ if (navToggle && navLinks) {
   });
 }
 
-// reservation form submission (Formspree)
+// reservation form submission (opens a prefilled email — no third-party service required)
 const reserveerForm = document.getElementById('reserveerForm');
 const formStatus = document.getElementById('formStatus');
 const datumInput = document.getElementById('datum');
@@ -60,43 +60,36 @@ function buildReservationIcs(dateStr) {
 }
 
 if (reserveerForm) {
-  reserveerForm.addEventListener('submit', async (e) => {
+  reserveerForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const button = reserveerForm.querySelector('button');
-    const originalLabel = button.textContent;
-    button.disabled = true;
-    button.textContent = 'Versturen...';
-    formStatus.textContent = '';
-    if (addToCalendar) addToCalendar.hidden = true;
 
-    const gekozenDatum = datumInput ? datumInput.value : '';
+    const naam = reserveerForm.naam.value.trim();
+    const telefoon = reserveerForm.telefoon.value.trim();
+    const datum = datumInput ? datumInput.value : '';
+    const gasten = reserveerForm.gasten.value.trim();
+    const bericht = reserveerForm.bericht.value.trim();
 
-    try {
-      const response = await fetch(reserveerForm.action, {
-        method: 'POST',
-        body: new FormData(reserveerForm),
-        headers: { 'Accept': 'application/json' }
-      });
-      if (response.ok) {
-        reserveerForm.reset();
-        button.textContent = 'Verzonden — dank u wel';
-        formStatus.textContent = 'Uw aanvraag is verstuurd. Timber neemt binnen twee werkdagen contact op.';
+    const bodyLines = [
+      `Naam: ${naam}`,
+      `Telefoonnummer: ${telefoon}`,
+      datum ? `Gewenste datum: ${datum}` : null,
+      gasten ? `Aantal gasten: ${gasten}` : null,
+      bericht ? `Bericht: ${bericht}` : null
+    ].filter(Boolean);
 
-        if (gekozenDatum && addToCalendar) {
-          if (icsObjectUrl) URL.revokeObjectURL(icsObjectUrl);
-          const blob = new Blob([buildReservationIcs(gekozenDatum)], { type: 'text/calendar' });
-          icsObjectUrl = URL.createObjectURL(blob);
-          addToCalendar.href = icsObjectUrl;
-          addToCalendar.hidden = false;
-        }
-      } else {
-        throw new Error('submission failed');
-      }
-    } catch (err) {
-      button.disabled = false;
-      button.textContent = originalLabel;
-      formStatus.textContent = 'Verzenden is niet gelukt. Probeer het opnieuw, of mail rechtstreeks naar mattijskunst@gmail.com.';
+    const subject = 'Reserveringsaanvraag — Timber Nijland';
+    const mailtoUrl = `mailto:mattijskunst@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+
+    if (datum && addToCalendar) {
+      if (icsObjectUrl) URL.revokeObjectURL(icsObjectUrl);
+      const blob = new Blob([buildReservationIcs(datum)], { type: 'text/calendar' });
+      icsObjectUrl = URL.createObjectURL(blob);
+      addToCalendar.href = icsObjectUrl;
+      addToCalendar.hidden = false;
     }
+
+    window.location.href = mailtoUrl;
+    formStatus.textContent = 'Uw e-mailprogramma wordt geopend met de aanvraag klaar om te versturen. Geen e-mailprogramma ingesteld? Mail dan rechtstreeks naar mattijskunst@gmail.com.';
   });
 }
 

@@ -285,7 +285,7 @@
       <h2>Laten we uw avond samenstellen.</h2>
       <p class="lead" style="margin-left:auto; margin-right:auto;">Vertel iets over uw gezelschap en de gelegenheid — Timber neemt binnen twee werkdagen contact op voor het voorgesprek.</p>
     </div>
-    <form class="cta-form reveal" id="reserveerForm" action="https://formspree.io/f/xwvglrzo" method="POST">
+    <form class="cta-form reveal" id="reserveerForm" action="mailto:mattijskunst@gmail.com" method="POST" enctype="text/plain">
       <div>
         <label for="naam">Naam</label>
         <input id="naam" name="naam" type="text" placeholder="Uw naam" autocomplete="name" required>
@@ -295,14 +295,10 @@
         <input id="telefoon" name="telefoon" type="tel" placeholder="06 12 34 56 78" autocomplete="tel" required>
       </div>
       <div>
-        <label for="email">E-mailadres</label>
-        <input id="email" name="email" type="email" placeholder="uw@email.nl" autocomplete="email" required>
-      </div>
-      <div>
         <label for="datum">Gewenste datum</label>
         <input id="datum" name="datum" type="date" autocomplete="off">
       </div>
-      <div class="field-full">
+      <div>
         <label for="gasten">Aantal gasten (max. 8)</label>
         <input id="gasten" name="gasten" type="number" min="1" max="8" placeholder="6" autocomplete="off">
       </div>
@@ -310,8 +306,6 @@
         <label for="bericht">Bericht</label>
         <textarea id="bericht" name="bericht" rows="3" placeholder="Gelegenheid, wensen, allergieën..."></textarea>
       </div>
-      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-      <input type="hidden" name="_subject" value="Nieuwe reserveringsaanvraag — Timber Nijland">
       <button type="submit" class="field-full">Verstuur aanvraag</button>
       <p class="form-status field-full" id="formStatus" role="status" aria-live="polite"></p>
       <a href="#" class="btn-ghost field-full add-to-calendar" id="addToCalendar" download="aanvraag-timber-nijland.ics" hidden>+ Voeg gewenste datum toe aan uw agenda</a>
