@@ -59,6 +59,11 @@ function buildReservationIcs(dateStr) {
   ].join('\r\n');
 }
 
+function formatDutchDate(isoDate) {
+  const [y, m, d] = isoDate.split('-');
+  return `${d}-${m}-${y}`;
+}
+
 if (reserveerForm) {
   reserveerForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -66,18 +71,21 @@ if (reserveerForm) {
     const naam = reserveerForm.naam.value.trim();
     const telefoon = reserveerForm.telefoon.value.trim();
     const datum = datumInput ? datumInput.value : '';
+    const datumFormatted = datum ? formatDutchDate(datum) : '';
     const gasten = reserveerForm.gasten.value.trim();
     const bericht = reserveerForm.bericht.value.trim();
 
     const bodyLines = [
       `Naam: ${naam}`,
       `Telefoonnummer: ${telefoon}`,
-      datum ? `Gewenste datum: ${datum}` : null,
+      datumFormatted ? `Gewenste datum: ${datumFormatted}` : null,
       gasten ? `Aantal gasten: ${gasten}` : null,
       bericht ? `Bericht: ${bericht}` : null
     ].filter(Boolean);
 
-    const subject = 'Reserveringsaanvraag — Timber Nijland';
+    const subject = datumFormatted
+      ? `Reserveringsaanvraag — ${datumFormatted} — Timber Nijland`
+      : 'Reserveringsaanvraag — Timber Nijland';
     const mailtoUrl = `mailto:mattijskunst@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
 
     if (datum && addToCalendar) {
