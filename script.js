@@ -30,6 +30,35 @@ if (navToggle && navLinks) {
 // reservation form submission (Formspree)
 const reserveerForm = document.getElementById('reserveerForm');
 const formStatus = document.getElementById('formStatus');
+const datumInput = document.getElementById('datum');
+const addToCalendar = document.getElementById('addToCalendar');
+let icsObjectUrl = null;
+
+if (datumInput) {
+  datumInput.min = new Date().toISOString().split('T')[0];
+}
+
+function buildReservationIcs(dateStr) {
+  const compact = dateStr.replace(/-/g, '');
+  const dtStamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+  const uid = `reservering-${compact}-${Date.now()}@finediningbytimber.nl`;
+  return [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Timber Nijland Prive Dining//NL',
+    'BEGIN:VEVENT',
+    `UID:${uid}`,
+    `DTSTAMP:${dtStamp}`,
+    `DTSTART:${compact}T180000`,
+    `DTEND:${compact}T230000`,
+    'SUMMARY:Diner met Timber Nijland (aanvraag)',
+    'DESCRIPTION:Aanvraag voor een prive-dinneravond met Timber Nijland. Deze datum is nog niet bevestigd\\, Timber neemt binnen twee werkdagen contact op voor het voorgesprek.',
+    'LOCATION:Bij u thuis',
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].join('\r\n');
+}
+
 if (reserveerForm) {
   reserveerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -38,6 +67,9 @@ if (reserveerForm) {
     button.disabled = true;
     button.textContent = 'Versturen...';
     formStatus.textContent = '';
+    if (addToCalendar) addToCalendar.hidden = true;
+
+    const gekozenDatum = datumInput ? datumInput.value : '';
 
     try {
       const response = await fetch(reserveerForm.action, {
@@ -49,6 +81,14 @@ if (reserveerForm) {
         reserveerForm.reset();
         button.textContent = 'Verzonden — dank u wel';
         formStatus.textContent = 'Uw aanvraag is verstuurd. Timber neemt binnen twee werkdagen contact op.';
+
+        if (gekozenDatum && addToCalendar) {
+          if (icsObjectUrl) URL.revokeObjectURL(icsObjectUrl);
+          const blob = new Blob([buildReservationIcs(gekozenDatum)], { type: 'text/calendar' });
+          icsObjectUrl = URL.createObjectURL(blob);
+          addToCalendar.href = icsObjectUrl;
+          addToCalendar.hidden = false;
+        }
       } else {
         throw new Error('submission failed');
       }

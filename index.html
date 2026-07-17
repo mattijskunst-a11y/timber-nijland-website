@@ -300,7 +300,7 @@
       </div>
       <div>
         <label for="datum">Gewenste datum</label>
-        <input id="datum" name="datum" type="text" placeholder="bijv. zaterdag 12 september" autocomplete="off">
+        <input id="datum" name="datum" type="date" autocomplete="off">
       </div>
       <div class="field-full">
         <label for="gasten">Aantal gasten (max. 8)</label>
@@ -314,6 +314,7 @@
       <input type="hidden" name="_subject" value="Nieuwe reserveringsaanvraag — Timber Nijland">
       <button type="submit" class="field-full">Verstuur aanvraag</button>
       <p class="form-status field-full" id="formStatus" role="status" aria-live="polite"></p>
+      <a href="#" class="btn-ghost field-full add-to-calendar" id="addToCalendar" download="aanvraag-timber-nijland.ics" hidden>+ Voeg gewenste datum toe aan uw agenda</a>
     </form>
   </div>
 </section>
