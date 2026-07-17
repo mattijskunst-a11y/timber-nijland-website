@@ -35,6 +35,7 @@ if (reserveerForm) {
     e.preventDefault();
 
     const naam = reserveerForm.naam.value.trim();
+    const telefoon = reserveerForm.telefoon.value.trim();
     const email = reserveerForm.email.value.trim();
     const datum = reserveerForm.datum.value.trim();
     const gasten = reserveerForm.gasten.value.trim();
@@ -42,6 +43,7 @@ if (reserveerForm) {
 
     const bodyLines = [
       `Naam: ${naam}`,
+      `Telefoonnummer: ${telefoon}`,
       `E-mailadres: ${email}`,
       datum ? `Gewenste datum: ${datum}` : null,
       gasten ? `Aantal gasten: ${gasten}` : null,

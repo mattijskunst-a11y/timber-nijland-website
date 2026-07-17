@@ -288,26 +288,30 @@
     <form class="cta-form reveal" id="reserveerForm" action="mailto:mattijskunst@gmail.com" method="POST" enctype="text/plain">
       <div>
         <label for="naam">Naam</label>
-        <input id="naam" name="naam" type="text" placeholder="Uw naam" required>
+        <input id="naam" name="naam" type="text" placeholder="Uw naam" autocomplete="name" required>
+      </div>
+      <div>
+        <label for="telefoon">Telefoonnummer</label>
+        <input id="telefoon" name="telefoon" type="tel" placeholder="06 12 34 56 78" autocomplete="tel" required>
       </div>
       <div>
         <label for="email">E-mailadres</label>
-        <input id="email" name="email" type="email" placeholder="uw@email.nl" required>
+        <input id="email" name="email" type="email" placeholder="uw@email.nl" autocomplete="email" required>
       </div>
       <div>
         <label for="datum">Gewenste datum</label>
-        <input id="datum" name="datum" type="text" placeholder="bijv. zaterdag 12 september">
+        <input id="datum" name="datum" type="text" placeholder="bijv. zaterdag 12 september" autocomplete="off">
       </div>
-      <div>
+      <div class="field-full">
         <label for="gasten">Aantal gasten (max. 8)</label>
-        <input id="gasten" name="gasten" type="number" min="1" max="8" placeholder="6">
+        <input id="gasten" name="gasten" type="number" min="1" max="8" placeholder="6" autocomplete="off">
       </div>
-      <div>
+      <div class="field-full">
         <label for="bericht">Bericht</label>
         <textarea id="bericht" name="bericht" rows="3" placeholder="Gelegenheid, wensen, allergieën..."></textarea>
       </div>
-      <button type="submit">Verstuur aanvraag</button>
-      <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      <button type="submit" class="field-full">Verstuur aanvraag</button>
+      <p class="form-status field-full" id="formStatus" role="status" aria-live="polite"></p>
     </form>
   </div>
 </section>
