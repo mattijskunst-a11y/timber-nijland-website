@@ -27,34 +27,36 @@ if (navToggle && navLinks) {
   });
 }
 
-// reservation form submission (opens a prefilled email — no third-party service required)
+// reservation form submission (Formspree)
 const reserveerForm = document.getElementById('reserveerForm');
 const formStatus = document.getElementById('formStatus');
 if (reserveerForm) {
-  reserveerForm.addEventListener('submit', (e) => {
+  reserveerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    const button = reserveerForm.querySelector('button');
+    const originalLabel = button.textContent;
+    button.disabled = true;
+    button.textContent = 'Versturen...';
+    formStatus.textContent = '';
 
-    const naam = reserveerForm.naam.value.trim();
-    const telefoon = reserveerForm.telefoon.value.trim();
-    const email = reserveerForm.email.value.trim();
-    const datum = reserveerForm.datum.value.trim();
-    const gasten = reserveerForm.gasten.value.trim();
-    const bericht = reserveerForm.bericht.value.trim();
-
-    const bodyLines = [
-      `Naam: ${naam}`,
-      `Telefoonnummer: ${telefoon}`,
-      `E-mailadres: ${email}`,
-      datum ? `Gewenste datum: ${datum}` : null,
-      gasten ? `Aantal gasten: ${gasten}` : null,
-      bericht ? `Bericht: ${bericht}` : null
-    ].filter(Boolean);
-
-    const subject = 'Reserveringsaanvraag — Timber Nijland';
-    const mailtoUrl = `mailto:mattijskunst@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
-
-    window.location.href = mailtoUrl;
-    formStatus.textContent = 'Uw e-mailprogramma wordt geopend met de aanvraag klaar om te versturen. Geen e-mailprogramma ingesteld? Mail dan rechtstreeks naar mattijskunst@gmail.com.';
+    try {
+      const response = await fetch(reserveerForm.action, {
+        method: 'POST',
+        body: new FormData(reserveerForm),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        reserveerForm.reset();
+        button.textContent = 'Verzonden — dank u wel';
+        formStatus.textContent = 'Uw aanvraag is verstuurd. Timber neemt binnen twee werkdagen contact op.';
+      } else {
+        throw new Error('submission failed');
+      }
+    } catch (err) {
+      button.disabled = false;
+      button.textContent = originalLabel;
+      formStatus.textContent = 'Verzenden is niet gelukt. Probeer het opnieuw, of mail rechtstreeks naar mattijskunst@gmail.com.';
+    }
   });
 }
 
