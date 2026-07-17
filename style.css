@@ -197,6 +197,7 @@ nav{display:flex; justify-content:space-between; align-items:center; gap:20px;}
   font-size:1.08rem;
   color:rgba(243,236,223,0.78);
   font-weight:300;
+  line-height:1.7; letter-spacing:0.01em;
   opacity:0;
   animation:riseIn 1.1s ease forwards .65s;
 }
@@ -261,6 +262,7 @@ section{padding:130px 0; position:relative;}
   font-weight:300;
   font-size:1.05rem;
   max-width:52ch;
+  line-height:1.7; letter-spacing:0.01em;
 }
 .reveal{opacity:0; transform:translateY(24px); transition:opacity .8s ease, transform .8s ease;}
 .reveal.in{opacity:1; transform:translateY(0);}
@@ -283,6 +285,7 @@ section{padding:130px 0; position:relative;}
 }
 .concept-card p{
   color:rgba(243,236,223,0.72); font-weight:300; font-size:0.96rem;
+  line-height:1.7; letter-spacing:0.01em;
 }
 @media (max-width:800px){ .concept-grid{grid-template-columns:1fr;} }
 
@@ -307,7 +310,7 @@ section{padding:130px 0; position:relative;}
   margin-bottom:18px;
 }
 .step h3{font-size:1.1rem; font-weight:500; margin-bottom:10px;}
-.step p{color:rgba(243,236,223,0.72); font-weight:300; font-size:0.92rem;}
+.step p{color:rgba(243,236,223,0.72); font-weight:300; font-size:0.92rem; line-height:1.7; letter-spacing:0.01em;}
 @media (max-width:900px){ .steps{grid-template-columns:1fr 1fr;} }
 @media (max-width:560px){ .steps{grid-template-columns:1fr;} }
 
@@ -343,6 +346,7 @@ section{padding:130px 0; position:relative;}
 .menu-line .name{font-family:'Fraunces', serif; font-style:italic; font-size:1.05rem;}
 .keuken-text p{
   color:rgba(243,236,223,0.72); font-weight:300; margin-bottom:22px; font-size:1rem;
+  line-height:1.75; letter-spacing:0.01em;
 }
 .keuken-text strong{color:var(--brass-soft); font-weight:500;}
 
@@ -365,10 +369,29 @@ section{padding:130px 0; position:relative;}
 .chef-text h2{margin-bottom:20px;}
 .chef-text p{
   color:rgba(243,236,223,0.72); font-weight:300; margin-bottom:16px; font-size:1rem; max-width:62ch;
+  line-height:1.75; letter-spacing:0.01em;
+}
+.chef-text p:first-of-type{
+  font-size:1.1rem;
+  color:rgba(243,236,223,0.85);
+}
+.chef-text p:first-of-type::first-letter{
+  font-family:'Fraunces', serif;
+  font-style:italic;
+  font-weight:500;
+  font-size:3.4rem;
+  line-height:0.65;
+  float:left;
+  padding-right:12px;
+  padding-top:6px;
+  color:var(--brass-soft);
 }
 .chef-text strong{color:var(--brass-soft); font-weight:500;}
 .chef-text .btn-ghost{margin-top:10px; display:inline-block;}
-@media (max-width:800px){ .chef-text p{max-width:60ch; margin-left:auto; margin-right:auto;} }
+@media (max-width:800px){
+  .chef-text p{max-width:60ch; margin-left:auto; margin-right:auto;}
+  .chef-text p:first-of-type::first-letter{float:none; padding-right:2px;}
+}
 
 /* ---------- TAFEL VOOR ACHT (signature) ---------- */
 .table-section{
@@ -403,7 +426,7 @@ section{padding:130px 0; position:relative;}
   opacity:0.85;
   box-shadow:0 0 0 1px rgba(243,236,223,0.15);
 }
-.table-copy{max-width:520px; margin:64px auto 0; color:rgba(243,236,223,0.72); font-weight:300; font-size:1.02rem;}
+.table-copy{max-width:520px; margin:64px auto 0; color:rgba(243,236,223,0.72); font-weight:300; font-size:1.02rem; line-height:1.75; letter-spacing:0.01em;}
 
 /* ---------- FAQ ---------- */
 .faq-list{max-width:760px;}
@@ -434,6 +457,7 @@ section{padding:130px 0; position:relative;}
   color:rgba(243,236,223,0.72);
   font-weight:300;
   font-size:0.98rem;
+  line-height:1.7; letter-spacing:0.01em;
 }
 
 /* ---------- DOELGROEP / QUOTE ---------- */
