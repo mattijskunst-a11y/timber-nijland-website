@@ -93,10 +93,10 @@ if (reserveerForm) {
     const subject = datumFormatted
       ? `Reserveringsaanvraag — ${datumFormatted} — Timber Nijland`
       : 'Reserveringsaanvraag — Timber Nijland';
-    const mailtoUrl = `mailto:mattijskunst@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+    const mailtoUrl = `mailto:finediningbytimber@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
 
     window.location.href = mailtoUrl;
-    formStatus.textContent = 'Uw e-mailprogramma wordt geopend met de aanvraag klaar om te versturen. Geen e-mailprogramma ingesteld? Mail dan rechtstreeks naar mattijskunst@gmail.com.';
+    formStatus.textContent = 'Uw e-mailprogramma wordt geopend met de aanvraag klaar om te versturen. Geen e-mailprogramma ingesteld? Mail dan rechtstreeks naar finediningbytimber@gmail.com.';
   });
 }
 
