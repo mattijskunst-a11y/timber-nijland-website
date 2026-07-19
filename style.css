@@ -326,7 +326,7 @@ section{padding:130px 0; position:relative;}
   background:linear-gradient(160deg, rgba(74,31,43,0.25), transparent 60%);
 }
 .menu-card::before{
-  content:"Menu du Soir";
+  content:"Le Petit Voyage";
   position:absolute; top:-14px; left:40px;
   background:var(--espresso);
   padding:0 14px;
