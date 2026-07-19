@@ -31,14 +31,12 @@ if (navToggle && navLinks) {
 const galleryItems = document.querySelectorAll('.gallery-item');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
-const lightboxCaption = document.getElementById('lightboxCaption');
 const lightboxClose = document.getElementById('lightboxClose');
 
 function openLightbox(item) {
   const img = item.querySelector('img');
   lightboxImg.src = img.src;
   lightboxImg.alt = img.alt;
-  lightboxCaption.textContent = item.dataset.caption || '';
   lightbox.hidden = false;
   lightboxClose.focus();
 }
