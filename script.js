@@ -61,6 +61,14 @@ if (lightbox) {
 const reserveerForm = document.getElementById('reserveerForm');
 const formStatus = document.getElementById('formStatus');
 const datumInput = document.getElementById('datum');
+const soortSelect = document.getElementById('soort');
+
+// buttons with data-aanvraag preselect the request type in the form
+document.querySelectorAll('[data-aanvraag]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (soortSelect) soortSelect.value = btn.dataset.aanvraag;
+  });
+});
 
 if (datumInput) {
   datumInput.min = new Date().toISOString().split('T')[0];
@@ -80,19 +88,25 @@ if (reserveerForm) {
     const datum = datumInput ? datumInput.value : '';
     const datumFormatted = datum ? formatDutchDate(datum) : '';
     const gasten = reserveerForm.gasten.value.trim();
+    const soort = soortSelect ? soortSelect.value : 'Private dining';
+    const menu = reserveerForm.menu ? reserveerForm.menu.value : '';
+    const isOfferte = soort !== 'Private dining';
     const bericht = reserveerForm.bericht.value.trim();
 
     const bodyLines = [
       `Naam: ${naam}`,
       `Telefoonnummer: ${telefoon}`,
+      `Soort aanvraag: ${soort}`,
+      menu ? `Menu: ${menu}` : null,
       datumFormatted ? `Gewenste datum: ${datumFormatted}` : null,
       gasten ? `Aantal gasten: ${gasten}` : null,
       bericht ? `Bericht: ${bericht}` : null
     ].filter(Boolean);
 
+    const soortLabel = isOfferte ? `Offerteaanvraag ${soort.toLowerCase()}` : 'Reserveringsaanvraag private dining';
     const subject = datumFormatted
-      ? `Reserveringsaanvraag — ${datumFormatted} — Timber Nijland`
-      : 'Reserveringsaanvraag — Timber Nijland';
+      ? `${soortLabel} — ${datumFormatted} — Timber Nijland`
+      : `${soortLabel} — Timber Nijland`;
     const mailtoUrl = `mailto:finediningbytimber@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
 
     window.location.href = mailtoUrl;
