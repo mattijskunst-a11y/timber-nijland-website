@@ -350,6 +350,44 @@ section{padding:130px 0; position:relative;}
 }
 .keuken-text strong{color:var(--brass-soft); font-weight:500;}
 
+/* ---------- ARRANGEMENTEN ---------- */
+.arr-grid{display:grid; grid-template-columns:1fr 1fr; gap:32px;}
+.arr-card{border:1px solid var(--line); display:flex; flex-direction:column; background:linear-gradient(160deg, rgba(74,31,43,0.22), transparent 60%);}
+.arr-media{aspect-ratio:16/10; overflow:hidden;}
+.arr-media img{width:100%; height:100%; object-fit:cover; display:block; filter:saturate(0.92) brightness(0.9);}
+.arr-body{padding:38px 36px 40px; display:flex; flex-direction:column; flex:1;}
+.arr-body h3{font-size:1.7rem; font-weight:400; color:var(--ivory);}
+.arr-meta{margin-top:6px; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--sage);}
+.arr-price{margin:22px 0 18px; font-family:'Fraunces', serif; font-size:2.3rem; color:var(--brass-soft); line-height:1;}
+.arr-price span{font-family:'Inter'; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(243,236,223,0.55); margin-right:6px;}
+.arr-price small{font-family:'Inter'; font-size:0.85rem; color:rgba(243,236,223,0.55);}
+.arr-body > p:not(.arr-meta):not(.arr-price){color:rgba(243,236,223,0.72); font-weight:300; line-height:1.7; margin-bottom:30px;}
+.arr-body .btn-primary{margin-top:auto; align-self:flex-start; text-align:center;}
+@media (max-width:860px){ .arr-grid{grid-template-columns:1fr;} }
+
+/* ---------- MENU'S ---------- */
+.menu-tiers{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+.tier{background:var(--espresso); padding:44px 36px;}
+.tier-featured{background:linear-gradient(160deg, rgba(74,31,43,0.55), var(--espresso) 75%);}
+.tier-num{display:block; font-family:'Fraunces', serif; font-style:italic; font-size:1.6rem; color:var(--brass-soft); opacity:0.65; margin-bottom:18px;}
+.tier h3{font-size:1.3rem; font-weight:500; margin-bottom:14px; color:var(--brass-soft);}
+.tier p{color:rgba(243,236,223,0.72); font-weight:300; font-size:0.96rem; line-height:1.7;}
+.menu-note{margin-top:40px; max-width:60ch; color:rgba(243,236,223,0.6); font-weight:300; font-size:0.95rem; line-height:1.7;}
+@media (max-width:860px){ .menu-tiers{grid-template-columns:1fr;} }
+
+/* ---------- ZAKELIJK ---------- */
+.zakelijk{background:var(--wine-deep);}
+.zakelijk-grid{display:grid; grid-template-columns:5fr 7fr; gap:70px; align-items:center;}
+.zakelijk-media{aspect-ratio:4/5; overflow:hidden;}
+.zakelijk-media img{width:100%; height:100%; object-fit:cover; display:block; filter:saturate(0.92) brightness(0.92);}
+.zakelijk-text h2{font-size:clamp(1.9rem, 3.2vw, 2.7rem); line-height:1.12; margin-bottom:24px;}
+.zakelijk-text p{color:rgba(243,236,223,0.72); font-weight:300; line-height:1.75; margin-bottom:20px;}
+.zakelijk-text strong{color:var(--brass-soft); font-weight:500;}
+.zakelijk-text .btn-primary{margin-top:12px;}
+@media (max-width:900px){ .zakelijk-grid{grid-template-columns:1fr; gap:44px;} .zakelijk-media{max-width:420px;} }
+.table-copy a{color:var(--brass-soft); border-bottom:1px solid var(--brass);}
+.faq-item a{color:var(--brass-soft); border-bottom:1px solid var(--brass);}
+
 /* ---------- GALERIJ ---------- */
 .gallery-grid{
   display:grid;
@@ -568,7 +606,7 @@ section{padding:130px 0; position:relative;}
   font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(243,236,223,0.55);
   margin-bottom:8px; display:block;
 }
-.cta-form input, .cta-form textarea{
+.cta-form input, .cta-form textarea, .cta-form select{
   width:100%;
   background:rgba(243,236,223,0.045);
   border:1px solid var(--line);
@@ -579,7 +617,7 @@ section{padding:130px 0; position:relative;}
   transition:border-color .2s ease, background .2s ease;
 }
 .cta-form input::placeholder, .cta-form textarea::placeholder{color:rgba(243,236,223,0.35);}
-.cta-form input:focus, .cta-form textarea:focus{
+.cta-form input:focus, .cta-form textarea:focus, .cta-form select:focus{
   outline:none; border-color:var(--brass); background:rgba(243,236,223,0.075);
 }
 .cta-form button{
@@ -652,3 +690,5 @@ footer{
 @media (prefers-reduced-motion: reduce){
   *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
 }
+.cta-form select{appearance:none; -webkit-appearance:none; cursor:pointer; background-image:linear-gradient(45deg, transparent 50%, var(--brass) 50%), linear-gradient(135deg, var(--brass) 50%, transparent 50%); background-position:calc(100% - 20px) 50%, calc(100% - 14px) 50%; background-size:6px 6px; background-repeat:no-repeat; padding-right:40px;}
+.cta-form select option{color:#1B1714; background:#F3ECDF;}
